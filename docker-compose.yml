@@ -4,13 +4,13 @@ services:
     image:  "redis:alpine"
     ports:
       - "6379:6379"
-  # rabbit_mq:
-  #   image: "rabbitmq:alpine"
-  #   ports:
-  #     - "9999:5672"
-  #   environment:
-  #     - RABBITMQ_DEFAULT_USER="omar"
-  #     - RABBITMQ_DEFAULT_PASS="omar"
+  rabbit_mq:
+    image: "rabbitmq:alpine"
+    ports:
+      - "9999:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER="omar"
+      - RABBITMQ_DEFAULT_PASS="omar"
   zos_context:
     build: .
     ports:
