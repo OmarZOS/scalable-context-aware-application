@@ -1,6 +1,6 @@
 
 from abc import abstractmethod
-from Strategy.strategy import Strategy
+from Strategies.Strategy.strategy import Strategy
 
 class scheduleStrategy(Strategy):
     

@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  redis:
+    image:  "redis:alpine"
+    ports:
+      - "6379:6379"
+  # rabbit_mq:
+  #   image: "rabbitmq:alpine"
+  #   ports:
+  #     - "9999:5672"
+  #   environment:
+  #     - RABBITMQ_DEFAULT_USER="omar"
+  #     - RABBITMQ_DEFAULT_PASS="omar"
+  zos_context:
+    build: .
+    ports:
+      - "6060:6060"
+    environment:
+      - CONTEXT_RPC_PORT="6060"
+      - CONTEXT_RPC_HOST="localhost"
+      - RABBIT_MQ_HOST="localhost"
+      - RABBIT_MQ_USER="omar"
+      - RABBIT_MQ_PASSWORD="omar"
+      - REDIS_HOST="localhost"
+      - REDIS_PORT="6379"
+      - ZOS_CONTEXT_ID="1"

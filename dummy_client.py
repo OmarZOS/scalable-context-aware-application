@@ -10,6 +10,6 @@ context = xmlrpc.client.ServerProxy(url)
 # # Print list of available methods
 # print(context.system.listMethods())
 
-context.set("token",)
+context.set("token",98)
 
-print(context.get("dummyVar"))
+print(context.get("token"))

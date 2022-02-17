@@ -2,6 +2,8 @@
 import contextvars
 import json
 
+from uritemplate import variables
+
 from listeningService.listeningService import listeningService
 from abc import abstractmethod
 import pika
@@ -28,10 +30,15 @@ class rabbitMQ_Implementation(listeningService):
     def receiveData(self,ch,method,properties,body):
         # print("Ich habe gesehen was ihr wollte")
         # print("Ich bin nummer " +str(self.identifier))
-        dateien=json.loads(body.decode())
-        # print(dateien)
+        data=json.loads(body.decode())
+        dateien = data["variable"]
+        
+        
+        
         for key,value in dateien.items():
-            self.contextvars[key]= value 
+            self.contextvars[key]= value
+        
+         
 
     def transfer(self):
         # don't transfer anything!

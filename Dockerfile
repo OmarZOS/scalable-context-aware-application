@@ -1,23 +1,13 @@
-FROM ubuntu:16.04
+FROM alpine:latest
 
 WORKDIR /code
 
-
-RUN apt update
-RUN apt upgrade -y
-# Install python 3.7
-RUN apt install software-properties-common -y
-RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt install python3.7 -y
-
-# Make python 3.7 the default
-RUN echo "alias python=python3.7" >> ~/.bashrc
-RUN export PATH=${PATH}:/usr/bin/python3.7
-RUN /bin/bash -c "source ~/.bashrc"
-
-# Install pip
-RUN apt install python3-pip -y
-RUN python -m pip install --upgrade pip
+# Install python/pip
+ENV PYTHONUNBUFFERED=1
+RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
+RUN python3 -m ensurepip
+RUN pip3 install --no-cache --upgrade pip setuptools
+RUN pip3 install redis
 
 
 COPY . /code

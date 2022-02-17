@@ -13,7 +13,7 @@ class appContext(iContext):
         self.contextVariables = contextDict
         self.publisher = locator.getPublisher()
     
-    def getStrategy(strategyType):
+    def getStrategy(self,strategyType):
         # This function is supposed to be more sophisticated in order to make a specific choice
         return locator.getScheduleStrategy(strategyType)
 
@@ -24,7 +24,12 @@ class appContext(iContext):
             self.contextVariables[varName]=value
             self.publisher.addQueue(routeName,varName)
             dict = {}
-            dict[varName]=value
+            varDict = {}
+            varDict[varName] = value
+            dict["variable"] = varDict
+            
+            self.getStrategy("schedule").addElementToList(varName,value)
+            
             self.publisher.publish(routeName,json.dumps(dict))
             
         return True
