@@ -65,6 +65,11 @@ with SimpleXMLRPCServer((SERVING_HOST, SERVING_PORT),
     @server.register_function(name='get')
     def getVariable(varname):
         return context.get(varname)
+    
+    @server.register_function(name='getToken')
+    def getVariable(varname):
+        return context.get(varname)
+    
     # server.register_function(getVariable, )
     
 

@@ -7,10 +7,9 @@ url="http://{}:{}".format(SERVING_HOST,SERVING_PORT)
 print(url)
 context = xmlrpc.client.ServerProxy(url)
 
-
 # # Print list of available methods
 # print(context.system.listMethods())
 
-# context.set("dummyVar",5)
+context.set("token",)
 
-# print(context.get("dummyVar"))
+print(context.get("dummyVar"))

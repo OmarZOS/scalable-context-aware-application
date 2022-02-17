@@ -25,13 +25,11 @@ class rabbitMQ_Implementation(listeningService):
         # print("starting consumption..")
         channel.start_consuming()
         
- 
-
     def receiveData(self,ch,method,properties,body):
         # print("Ich habe gesehen was ihr wollte")
-        print("Ich bin nummer " +str(self.identifier))
+        # print("Ich bin nummer " +str(self.identifier))
         dateien=json.loads(body.decode())
-        print(dateien)
+        # print(dateien)
         for key,value in dateien.items():
             self.contextvars[key]= value 
 

@@ -10,7 +10,7 @@ class iContext(ABC):
     routeName = "Context"
     
     @abstractmethod
-    def getStrategy(args):
+    def getStrategy(strategyType):
         pass
 
     @abstractmethod #used to set a shared object
