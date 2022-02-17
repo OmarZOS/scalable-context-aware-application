@@ -35,7 +35,7 @@ Use this command to build and deploy the containers:
 
 ### Hypothesis
 
-We suppose that the beholding nodes of this shared context have a way of knowing each other. The subsystem responsible for making knowledge between the nodes is meant 
+We suppose that the beholding nodes of this shared context have a way of knowing each other. The subsystem responsible for making knowledge between the nodes is meant keep groups of nodes knowing eachother, another feature that I plan to add is the election process using the sidecar pattern to elect one coordinator from within each group in order to communicate with other groups. But for now, I just suppose that these subsystems are already made.
 
 ### Progress
     
