@@ -40,7 +40,8 @@ We suppose that the beholding nodes of this shared context have a way of knowing
 ### Progress
     
 - [x] In between node communication.
-- [x] Stateful strategy related variables.
+- [x] Stateless strategy instances.
 - [x] Context as an RPC service.
-- [x] Containerisation
-- [x] Automation of deployment.
+- [ ] Containerisation. (Dockerfile)
+- [x] Automation of deployment. (docker-compose)
+- [ ] Smaller footprint. (fix alpine linux dependencies)
