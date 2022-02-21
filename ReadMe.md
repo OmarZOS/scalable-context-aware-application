@@ -42,6 +42,6 @@ We suppose that the beholding nodes of this shared context have a way of knowing
 - [x] In between node communication.
 - [x] Stateless strategy instances.
 - [x] Context as an RPC service.
-- [ ] Containerisation. (Dockerfile)
+- [x] Containerisation. (Dockerfile)
 - [x] Automation of deployment. (docker-compose)
-- [ ] Smaller footprint. (fix alpine linux dependencies)
+- [x] Smaller footprint. (fix alpine linux dependencies)

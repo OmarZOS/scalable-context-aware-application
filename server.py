@@ -12,6 +12,8 @@ SERVING_HOST = str(os.getenv("CONTEXT_RPC_HOST"))
 RMQ_HOST = str(os.getenv("RABBIT_MQ_HOST"))
 RMQ_USER = str(os.getenv("RABBIT_MQ_USER"))
 RMQ_PASSWORD = str(os.getenv("RABBIT_MQ_PASSWORD"))
+RMQ_PORT = str(os.getenv("RABBIT_MQ_PORT"))
+
 
 ZOS_CONTEXT_ID = str(os.getenv("ZOS_CONTEXT_ID"))
 
