@@ -14,7 +14,6 @@ RMQ_USER = str(os.getenv("RABBIT_MQ_USER"))
 RMQ_PASSWORD = str(os.getenv("RABBIT_MQ_PASSWORD"))
 RMQ_PORT = str(os.getenv("RABBIT_MQ_PORT"))
 
-
 ZOS_CONTEXT_ID = str(os.getenv("ZOS_CONTEXT_ID"))
 
 manager = Manager()
@@ -41,8 +40,6 @@ listener = Process(target=rabbitMQ_Implementation
                         ,ZOS_CONTEXT_ID))
 listener.start()
 
-
-
 # Restrict to a particular path.
 class RequestHandler(SimpleXMLRPCRequestHandler):
     rpc_paths = ('/RPC2',)
@@ -65,12 +62,8 @@ with SimpleXMLRPCServer((SERVING_HOST, SERVING_PORT),
     
     # Getting a context variable
     @server.register_function(name='get')
-    def getVariable(varname):
-        return context.get(varname)
-    
-    @server.register_function(name='getToken')
-    def getVariable(varname):
-        return context.get(varname)
+    def getVariable(varname,put_at_end=True):
+        return context.get(varname,put_at_end)
     
     # server.register_function(getVariable, )
     

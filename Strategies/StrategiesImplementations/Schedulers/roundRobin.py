@@ -9,7 +9,7 @@ from redis_client import redisClient
 robinsQueues = {}
 # 
 class roundRobin(scheduleStrategy):
-    cacheClient = redisClient()
+    cacheServer = redisClient()
     def addElementToList(self,varName,value):
         localList=[]
         try :
@@ -17,7 +17,7 @@ class roundRobin(scheduleStrategy):
         except:
             localList=[]
          
-        remoteList = self.cacheClient.getValue(varName)
+        remoteList = self.cacheServer.getValue(varName)
         if not isinstance(remoteList, list):
             remoteList = []
         
@@ -29,34 +29,37 @@ class roundRobin(scheduleStrategy):
         if(varName in robinsQueues.keys()):
             if(value not in robinsQueues[varName]):
                 robinsQueues[varName].extend([value])
-                self.cacheClient.setValue(varName,robinsQueues[varName])  
+                self.cacheServer.setValue(varName,robinsQueues[varName])  
         else:
             robinsQueues[varName] =  [value]
             
-    def getFrom(self,varName):
-        localList=[]
-        try :
-           localList=robinsQueues[varName]
-        except:
-            pass
+    def getFrom(self,varName,put_at_end= True):
+        # localList=[]
+        # try :
+        #    localList=robinsQueues[varName]
+        # except:
+        #     pass
          
-        remoteList = self.cacheClient.getValue(varName)
-        if not isinstance(remoteList, list):
-            remoteList = []
+        # remoteList = self.cacheClient.getValue(varName)
+        # if not isinstance(remoteList, list):
+        #     remoteList = []
         
-        robinsQueues[varName] = self.integrateLists(remoteList,localList)
+        # robinsQueues[varName] = self.integrateLists(localList,remoteList)
         
         #get the latest state of the queue
-        robinsQueues[varName] = self.integrateLists(remoteList,localList)
+        # robinsQueues[varName] = self.integrateLists(remoteList,localList)
+        # print(robinsQueues)
         
         if(varName in robinsQueues.keys()):
-            val = robinsQueues[varName].pop()
-            robinsQueues[varName].extend([val])
-            self.cacheClient.setValue(varName,robinsQueues[varName])  
+            val = robinsQueues[varName].pop(0)
+            if put_at_end :
+                robinsQueues[varName].extend([val])
+            self.cacheServer.setValue(varName,robinsQueues[varName])  
             return val
         else:
             return False
         
+    # future work: fault tolerance, multi agent redis modification
     def integrateLists(self,list1,list2):
         in_first = set(list1)
         in_second = set(list2)

@@ -1,7 +1,6 @@
-
-
 import os
 import redis
+
 
 REDIS_HOST=str(os.getenv("REDIS_HOST"))
 REDIS_PORT=str(os.getenv("REDIS_PORT"))

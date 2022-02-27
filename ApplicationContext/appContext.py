@@ -18,26 +18,26 @@ class appContext(iContext):
         return locator.getScheduleStrategy(strategyType)
 
     #used to set a shared object
-    def set(self,varName,value,routeName="Context",validUpdate=lambda x,y:True):
+    def set(self,varName,value,strategy="schedule",routeName="Context",validUpdate=lambda x,y:True):
         
         if validUpdate(varName,value):
             self.contextVariables[varName]=value
-            self.publisher.addQueue(routeName,varName)
+            # self.publisher.addQueue(routeName,varName)
             dict = {}
             varDict = {}
             varDict[varName] = value
             dict["variable"] = varDict
             
-            self.getStrategy("schedule").addElementToList(varName,value)
-            
-            self.publisher.publish(routeName,json.dumps(dict))
+            self.getStrategy(strategy).addElementToList(varName,value)
+            try:
+                self.publisher.publish(routeName,json.dumps(dict))
+            except print(0):
+                pass
             
         return True
         
     
-    def get(self,varName=""):  #used to get a shared object
+    def get(self,varName="",put_at_end=True):  #used to get a shared object
         if varName not in self.contextVariables.keys():
             return False
-        return self.contextVariables[varName]
-    
-    
+        return self.getStrategy("schedule").getFrom(varName,put_at_end)
