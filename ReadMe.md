@@ -30,7 +30,11 @@ Now, this variable is meant to be handled by another system, use the value 1 as 
 #### Docker
 
 Use this command to build and deploy the containers:
-
+    
+    # create networks externally
+    sudo docker create network context_net
+    sudo docker create network phoros_net
+    # may it launch
     sudo docker-compose up -d
 
 ### Hypothesis
