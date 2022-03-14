@@ -6,7 +6,7 @@ from pika.exchange_type import ExchangeType
 RMQ_HOST = str(os.getenv("RABBIT_MQ_HOST"))
 RMQ_USER = str(os.getenv("RABBIT_MQ_USER"))
 RMQ_PASSWORD = str(os.getenv("RABBIT_MQ_PASSWORD"))
-RMQ_PORT = str(os.getenv("RABBIT_MQ_PORT"))
+RMQ_PORT = int(os.getenv("RABBIT_MQ_PORT"))
 
 class publisherImplementation(publishingService):
 

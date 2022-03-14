@@ -3,8 +3,6 @@ import contextvars
 import json
 import os
 
-from uritemplate import variables
-
 from listeningService.listeningService import listeningService
 from abc import abstractmethod
 import pika
@@ -30,6 +28,7 @@ class rabbitMQ_Implementation(listeningService):
         channel = connection.channel()
         channel.exchange_declare(exchange,  exchange_type=ExchangeType.direct)#durable=True,
         # print(args[0])
+        channel.queue_declare(queue=str(routeName)+str(identifier))
         channel.basic_consume(queue=str(routeName)+str(identifier), on_message_callback=self.receiveData, auto_ack=True)
         # print("starting consumption..")
         channel.start_consuming()
