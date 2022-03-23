@@ -1,4 +1,4 @@
-import queue,pika,os
+import pika,os
 
 from publishingService.publishingService import publishingService
 from pika.exchange_type import ExchangeType

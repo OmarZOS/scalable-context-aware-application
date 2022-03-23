@@ -2,10 +2,7 @@ FROM python:3.7-alpine
 
 WORKDIR /code
 
-# Install python/pip
-
-RUN pip3 install pika
-RUN pip3 install redis
+RUN pip3 install -r requirements.txt
 
 RUN apk add bind-tools 
 

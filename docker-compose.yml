@@ -26,10 +26,13 @@ services:
     container_name: zos_context
     hostname: zos_context
     build:  .
+    image: omarzos/zos_context
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     volumes:
       - .:/code
+    depends_on:
+      - rabbit_mq
     ports:
       - 6061:6060
     environment:

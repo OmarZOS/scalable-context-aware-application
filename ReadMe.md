@@ -30,11 +30,7 @@ Now, this variable is meant to be handled by another system, use the value 1 as 
 #### Docker
 
 Use this command to build and deploy the containers:
-    
-    # create networks externally
-    sudo docker create network context_net
-    sudo docker create network phoros_net
-    # may it launch
+
     sudo docker-compose up -d
 
 ### Hypothesis
@@ -43,10 +39,17 @@ We suppose that the beholding nodes of this shared context have a way of knowing
 
 ### Progress
 
-- [x] Current code consistency.
-- [x] In between node communication.
-- [x] Stateless strategy instances.
-- [x] Context as an RPC service.
-- [x] Containerisation. (Dockerfile)
-- [x] Automation of deployment. (docker-compose)
-- [x] Smaller footprint. (fix alpine linux dependencies)
+- [x] Current code consistency. ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/70)
+- [x] Consensus handling. ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/70)
+  - [x] In between node communication.
+  - [x] Stateless strategy instances.
+    - [x] Key value store. (REDIS)
+- [x] Accessibility. ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/90)
+  - [x] Context as an RPC service.
+  - [X] Strategies:
+    -  Scheduling:
+       - Round robin
+  - [x] Text storage.
+- [x] Containerisation. (Dockerfile) ![](https://us-central1-progress-markdown.cloudfunctions.net/progress/90)
+  - [x] Automation of deployment. 
+  - [x] Smaller footprint. 
