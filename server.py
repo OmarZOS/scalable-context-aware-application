@@ -6,8 +6,8 @@ from multiprocessing import Process, Manager
 from ApplicationContext.appContext import appContext
 from rabbitMQ_Implementation.listenerImplementation import rabbitMQ_Implementation
 
-SERVING_PORT = int(os.getenv("CONTEXT_RPC_PORT"))
 SERVING_HOST = str(os.getenv("CONTEXT_RPC_HOST"))
+SERVING_PORT = (os.getenv("CONTEXT_RPC_PORT"))
 
 RMQ_HOST = str(os.getenv("RABBIT_MQ_HOST"))
 RMQ_USER = str(os.getenv("RABBIT_MQ_USER"))
@@ -45,7 +45,7 @@ class RequestHandler(SimpleXMLRPCRequestHandler):
     rpc_paths = ('/RPC2',)
 
 # Create server
-with SimpleXMLRPCServer((SERVING_HOST, SERVING_PORT),
+with SimpleXMLRPCServer((SERVING_HOST, int(SERVING_PORT)),
                         requestHandler=RequestHandler) as server:
 
     server.register_introspection_functions()
