@@ -19,6 +19,7 @@ class redisClient(object):
     def getValue(self,varName):
         try:
             return myRedisClient.get(str(varName))
-        except :
+        except BaseException as e:
+            print(str(e))
             return []
 

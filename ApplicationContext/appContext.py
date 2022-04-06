@@ -8,10 +8,12 @@ class appContext(iContext):
     publisher = None #this one publishes the updates made upon context variables
 
     contextVariables = None
-    
     def __init__ (self,contextDict):
         self.contextVariables = contextDict
         self.publisher = locator.getPublisher()
+
+    def get_vals(self):
+        return [(k,v) for (k,v) in self.contextVariables.items()]
     
     def getStrategy(self,strategyType):
         # This function is supposed to be more sophisticated in order to make a specific choice
@@ -31,12 +33,11 @@ class appContext(iContext):
             self.getStrategy(strategy).addElementToList(varName,value)
             try:
                 self.publisher.publish(routeName,json.dumps(dict))
-            except print(0):
-                pass
+            except BaseException as e:
+                print(str(e))
             
         return True
         
-    
     def get(self,varName="",put_at_end=True):  #used to get a shared object
         if varName not in self.contextVariables.keys():
             return False

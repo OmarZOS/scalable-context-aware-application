@@ -25,7 +25,7 @@ services:
   zos-context:
     container_name: zos-context
     hostname: zos-context
-    build:  .
+    build: .
     image: omarzos/zos-context
     stdin_open: true # docker run -i
     tty: true        # docker run -t
@@ -33,6 +33,7 @@ services:
       - .:/code
     depends_on:
       - rabbit_mq
+      - redis
     env_file:
       - env/context.env
       - env/rabbitmq.env

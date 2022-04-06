@@ -33,5 +33,5 @@ class publisherImplementation(publishingService):
         # print("publishing")
         try:
             self.channel.basic_publish(exchange="data",routing_key = routeName ,body = data)
-        except print(0):
-            pass
+        except BaseException as e:
+            print(str(e))

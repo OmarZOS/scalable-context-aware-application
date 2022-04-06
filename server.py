@@ -6,7 +6,7 @@ from multiprocessing import Process, Manager
 from ApplicationContext.appContext import appContext
 from rabbitMQ_Implementation.listenerImplementation import rabbitMQ_Implementation
 
-SERVING_HOST = str(os.getenv("CONTEXT_RPC_HOST"))
+SERVING_HOST = (os.getenv("CONTEXT_RPC_HOST"))
 SERVING_PORT = (os.getenv("CONTEXT_RPC_PORT"))
 
 RMQ_HOST = str(os.getenv("RABBIT_MQ_HOST"))
@@ -57,6 +57,8 @@ with SimpleXMLRPCServer((SERVING_HOST, int(SERVING_PORT)),
     
     # Setting a context variable
     def setVariable(varname,value):
+        print(f"Setting {varname} with {value}")
+        print(context.contextVariables)
         return context.set(varname,value)
     server.register_function(setVariable, 'set')
     
@@ -64,6 +66,11 @@ with SimpleXMLRPCServer((SERVING_HOST, int(SERVING_PORT)),
     @server.register_function(name='get')
     def getVariable(varname,put_at_end=True):
         return context.get(varname,put_at_end)
+
+    @server.register_function(name='get_all_vals')
+    def get_all_vals():
+        print(context.get_vals())
+        return context.get_vals()
     
     # server.register_function(getVariable, )
     
